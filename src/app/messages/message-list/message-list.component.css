@@ -1,0 +1,87 @@
+/* Message Container */
+.message-container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
+  
+  /* Message Title */
+  .message-title {
+    color: #000; 
+    font-size: 26px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    padding: 10px 15px;
+    
+    border-radius: 8px;
+    display: inline-block;
+  }
+  
+  /* Message Item */
+  .message-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    transition: background 0.3s ease-in-out;
+    cursor: pointer;
+    margin-bottom: 10px;
+  }
+  
+  .message-item:hover {
+    background: #eef4ff;
+  }
+  
+  /* Message Header (Sender Name) */
+  .messageHeader {
+    font-size: 1rem;
+    font-weight: bold;
+    background-color: #e8e8e8;
+    border-radius: 10px;
+    padding: 5px 10px;
+    display: inline-block;
+  }
+  
+  /* Message Text */
+  .messageText {
+    font-size: 1rem;
+    padding: 5px;
+    color: #333;
+  }
+  
+  /* Buttons (Matching Contacts Styling) */
+  .btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .btn-success:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+  }
+  
+  .btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .btn-danger:hover {
+    background-color: #c82333;
+    transform: scale(1.05);
+  }
+
+  

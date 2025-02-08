@@ -1,0 +1,4 @@
+<div class="message-item" [ngClass]="{'sent': message.sender === 'YourName'}">
+    <span class="messageHeader">{{ message.sender }}</span>
+    <div class="messageText">{{ message.msgText }}</div>
+  </div>

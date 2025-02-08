@@ -1,0 +1,32 @@
+/* Contact Item - Hover Effect */
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    transition: background 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.contact-item:hover {
+    background: #eef4ff;
+}
+
+/* Contact Image - Clickable Effect */
+.contact-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #007bff;
+    transition: transform 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.contact-image:hover {
+    transform: scale(1.1);
+    border-color: #0056b3;
+}

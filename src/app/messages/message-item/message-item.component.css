@@ -1,0 +1,44 @@
+/* Message Item (Improved for Bubble Style) */
+.message-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 12px;
+    border-radius: 15px;
+    background-color: #f1f1f1;
+    transition: background 0.3s ease-in-out;
+    margin-bottom: 12px;
+    max-width: 80%;
+    align-self: flex-start;
+    padding: 15px;
+  }
+  
+  
+  .message-item.sent {
+    background-color: #007bff; 
+    color: white;
+    align-self: flex-end; 
+  }
+  
+  
+  .messageHeader {
+    font-size: 1rem;
+    font-weight: bold;
+    background-color: #000000;
+    border-radius: 20px;
+    padding: 5px 15px;
+    display: inline-block;
+    max-width: fit-content;
+  }
+  
+  /* Message Text */
+  .messageText {
+    font-size: 1rem;
+    padding: 5px;
+    color: #333;
+  }
+  
+  
+  .sent .messageText {
+    color: white;
+  }

@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Contact } from '../contact.model';
 import { CommonModule } from '@angular/common';
-
 
 @Component({
   selector: 'cms-contact-detail',
@@ -11,13 +10,5 @@ import { CommonModule } from '@angular/common';
   styleUrl: './contact-detail.component.css'
 })
 export class ContactDetailComponent {
-  contact: Contact = new Contact(
-    '1',
-    'R. Kent Jackson',
-    'jacksonk@byui.edu',
-    '208-496-3771',
-    'assets/images/jacksonk.jpg',
-    null
-  );
-
+  @Input() contact!: Contact;
 }
