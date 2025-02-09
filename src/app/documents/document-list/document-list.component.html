@@ -1,18 +1,33 @@
-<div class="panel panel-default">
-    <div class="panel-heading">
-      <div class="d-flex justify-content-between align-items-center">
-        <span class="fw-bold">Documents</span>
-        <a class="btn btn-success">+ Add Document</a>
-      </div>
+<!-- <div class="panel panel-default">
+  <div class="panel-heading">
+    <h2>Documents</h2>
+  </div>
+  <div class="panel-body">
+    <div class="document-list">
+      <cms-document-item 
+        *ngFor="let document of documents"
+        [document]="document"
+        (click)="onSelectedDocument(document)">
+      </cms-document-item>
     </div>
-  
-    <div class="panel-body">
-      <div class="list-group">
-        <cms-document-item *ngFor="let document of documents"
-                           [document]="document"
-                           (documentSelected)="onSelected($event)">
+  </div>
+</div> -->
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2>Documents</h2>
+  </div>
+  <div class="panel-body">
+    <div class="document-list">
+      
+      
+      <div *ngFor="let document of documents; let i = index">
+        
+        <cms-document-item 
+          [document]="document"
+          (click)="onSelectedDocument(document)">
         </cms-document-item>
       </div>
     </div>
   </div>
-  
+</div>

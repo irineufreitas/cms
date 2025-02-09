@@ -1,0 +1,30 @@
+/* Document List Container */
+.document-list {
+    display: flex;
+    flex-wrap: wrap; /* ✅ Ensures wrapping */
+    gap: 15px; /* ✅ Adds space between items */
+    justify-content: flex-start;
+    padding: 10px;
+  }
+  
+  /* Document Item */
+  .documentDiv {
+    width: 200px; /* ✅ Adjusted size */
+    height: 100px; /* ✅ Slightly taller */
+    padding: 10px;
+    border: 1px solid darkgrey;
+    text-align: center;
+    background: #f8f9fa;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+  }
+  
+  .documentDiv:hover {
+    background-color: #eef4ff;
+  }

@@ -1,4 +1,3 @@
-<div class="list-group-item list-group-item-action" (click)="onClick()">
-    {{ document.name }}
-  </div>
-  
+<a class="list-group-item clearfix documentDiv">
+  {{ document.name || 'Unnamed Document' }}
+</a>
