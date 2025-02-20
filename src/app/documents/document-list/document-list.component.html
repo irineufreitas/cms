@@ -16,17 +16,15 @@
 <div class="panel panel-default">
   <div class="panel-heading">
     <h2>Documents</h2>
+    <button class="btn btn-primary add-document">Add Document</button>
   </div>
   <div class="panel-body">
-    <div class="document-list">
-      
-      
-      <div *ngFor="let document of documents; let i = index">
-        
-        <cms-document-item 
-          [document]="document"
-          (click)="onSelectedDocument(document)">
-        </cms-document-item>
+    <div class="document-grid">
+      <div *ngFor="let document of documents" class="document-card">
+        <div class="document-title">{{ document.name }}</div>
+        <div class="document-body">
+          <a class="btn btn-primary" [href]="document.url" target="_blank">View</a>
+        </div>
       </div>
     </div>
   </div>

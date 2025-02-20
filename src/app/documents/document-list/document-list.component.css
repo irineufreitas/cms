@@ -1,30 +1,93 @@
-/* Document List Container */
-.document-list {
-    display: flex;
-    flex-wrap: wrap; /* ✅ Ensures wrapping */
-    gap: 15px; /* ✅ Adds space between items */
-    justify-content: flex-start;
-    padding: 10px;
+.panel {
+  max-width: 100%;
+  width: 100%;
+  margin: 0 auto; /* Centering */
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 15px;
+  background: #fff;
+  overflow: hidden; /* Prevents internal content from overflowing */
+}
+
+.panel-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f8f9fa;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.add-document {
+  background-color: #28a745;
+  border: none;
+  padding: 8px 12px;
+  font-size: 14px;
+}
+
+.document-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr)); /* 4 columns without overflow */
+  gap: 20px;
+  padding: 20px;
+  justify-content: center;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box; /* Ensures proper width calculations */
+}
+
+.document-card {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background: #fff;
+  text-align: center;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  width: 100%; /* Ensures grid responsiveness */
+  min-height: 120px;
+}
+
+.document-title {
+  background: #f8f9fa;
+  padding: 10px;
+  font-weight: bold;
+  border-bottom: 1px solid #ddd;
+  width: 100%;
+}
+
+.document-body {
+  padding: 10px;
+}
+
+.btn-primary {
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: all 0.3s ease-in-out;
+  margin-top: 5px;
+  background-color: #0056b3;
+}
+
+.btn-primary:hover {
+  background-color: #004494;
+  transform: scale(1.05);
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 1200px) {
+  .document-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)); /* 3 columns */
   }
-  
-  /* Document Item */
-  .documentDiv {
-    width: 200px; /* ✅ Adjusted size */
-    height: 100px; /* ✅ Slightly taller */
-    padding: 10px;
-    border: 1px solid darkgrey;
-    text-align: center;
-    background: #f8f9fa;
-    border-radius: 5px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    transition: background 0.3s ease-in-out;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
+}
+
+@media (max-width: 900px) {
+  .document-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)); /* 2 columns */
   }
-  
-  .documentDiv:hover {
-    background-color: #eef4ff;
+}
+
+@media (max-width: 600px) {
+  .document-grid {
+    grid-template-columns: repeat(1, minmax(0, 1fr)); /* 1 column */
   }
+}

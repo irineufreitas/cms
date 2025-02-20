@@ -1,28 +1,25 @@
-import { Component, Output, EventEmitter } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { DocumentItemComponent } from '../document-item/document-item.component';
+import { Component, OnInit} from '@angular/core';
+import { CommonModule, NgFor } from '@angular/common';
 import { Document } from '../document.model';
+import { DocumentService } from '../document.service';
 
 @Component({
   selector: 'cms-document-list',
   standalone: true,
-  imports: [CommonModule, DocumentItemComponent],
+  imports: [NgFor, CommonModule],
   templateUrl: './document-list.component.html',
   styleUrls: ['./document-list.component.css']
 })
-export class DocumentListComponent {
-  @Output() selectedDocumentEvent = new EventEmitter<Document>(); 
+export class DocumentListComponent implements OnInit {
+  documents: Document[] = []; // empty array
 
-  documents: Document[] = [
-    new Document('1', 'Lesson Plan', 'Detailed lesson plan for week 1', 'https://example.com/lesson1'),
-    new Document('2', 'Project Overview', 'Summary of the new project', 'https://example.com/project'),
-    new Document('3', 'Meeting Notes', 'Notes from the last team meeting', 'https://example.com/meeting'),
-    new Document('4', 'Budget Report', 'Financial breakdown of Q1', 'https://example.com/budget'),
-    new Document('5', 'Research Paper', 'Findings on AI advancements', 'https://example.com/research')
-  ];
+  constructor(private documentService: DocumentService) {} // Inject DocumentService
 
-  onSelectedDocument(document: Document) {
-    console.log('📄 Selected Document:', document); 
-    this.selectedDocumentEvent.emit(document);
+  ngOnInit() {
+    this.documents = this.documentService.getDocuments(); // Fetch documents
+  
+  }
+  onSelected(document: Document) {
+    this.documentService.documentSelectedEvent.emit(document); // Emit selected document
   }
 }
