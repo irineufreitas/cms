@@ -21,4 +21,11 @@ import { Document } from './document.model';
     getDocument(id: string): Document | null {
       return this.documents.find(document => document.id === id) || null;
     }
+
+    deleteDocument(document: Document) {
+      if (!document) return;
+      const index = this.documents.indexOf(document);
+      if (index < 0) return;
+      this.documents.splice(index, 1);
+    }
 }

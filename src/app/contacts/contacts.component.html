@@ -1,6 +1,13 @@
 <div class="container">
-    <cms-contact-list></cms-contact-list>
-  
-    <cms-contact-detail *ngIf="selectedContact" [contact]="selectedContact"></cms-contact-detail>
+  <div class="row">
+    <!-- Contacts List -->
+    <div class="col-md-5">
+      <cms-contact-list></cms-contact-list>
+    </div>
+
+    <!-- Contact Details / Edit Form -->
+    <div class="col-md-7">
+      <router-outlet></router-outlet>
+    </div>
   </div>
-  
+</div>

@@ -2,11 +2,12 @@ import { Component, OnInit} from '@angular/core';
 import { CommonModule, NgFor } from '@angular/common';
 import { Document } from '../document.model';
 import { DocumentService } from '../document.service';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'cms-document-list',
   standalone: true,
-  imports: [NgFor, CommonModule],
+  imports: [NgFor, CommonModule, RouterModule],
   templateUrl: './document-list.component.html',
   styleUrls: ['./document-list.component.css']
 })

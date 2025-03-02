@@ -6,8 +6,8 @@
         <h3 class="mb-0">{{ contact.name }}</h3>
       </div>
       <div>
-        <button class="btn btn-light me-2">Edit</button>
-        <button class="btn btn-danger">Delete</button>
+        <a [routerLink]="['/contacts', contact.id, 'edit']" class="btn btn-info me-2">Edit</a>
+        <button class="btn btn-danger" (click)="onDelete()">Delete</button>
       </div>
     </div>
 

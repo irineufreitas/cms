@@ -16,14 +16,16 @@
 <div class="panel panel-default">
   <div class="panel-heading">
     <h2>Documents</h2>
-    <button class="btn btn-primary add-document">Add Document</button>
+    <a [routerLink]="['/documents', 'new']" class="btn btn-primary add-document">Add Document</a> 
   </div>
   <div class="panel-body">
     <div class="document-grid">
       <div *ngFor="let document of documents" class="document-card">
-        <div class="document-title">{{ document.name }}</div>
+        <div class="document-title">
+          <a [routerLink]="['/documents', document.id]" class="document-link">{{ document.name }}</a> 
+        </div>
         <div class="document-body">
-          <a class="btn btn-primary" [href]="document.url" target="_blank">View</a>
+          
         </div>
       </div>
     </div>

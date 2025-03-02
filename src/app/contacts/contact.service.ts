@@ -24,4 +24,11 @@ export class ContactService {
     return this.contacts.find(contact => contact.id === id) || null ;
   }
 
+  // Delete Contact
+  deleteContact(contact: Contact) {
+    if (!contact) return;
+    const index = this.contacts.indexOf(contact);
+    if (index < 0) return;
+    this.contacts.splice(index, 1);
+  }
 }

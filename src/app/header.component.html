@@ -1,24 +1,25 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
     <!-- Brand -->
-    <a class="navbar-brand" href="#">WeLearn CMS</a>
+    <a class="navbar-brand" routerLink="/">WeLearn CMS</a> <!-- ✅ Changed href="#" to routerLink="/" -->
 
     <!-- Toggle Button for Mobile View -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <!-- Navbar Items -->
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav me-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="#" (click)="onSelected('documents')">Documents</a>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['/documents']">Documents</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#" (click)="onSelected('messages')">Messages</a>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['/messages']">Messages</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#" (click)="onSelected('contacts')">Contacts</a>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['/contacts']">Contacts</a>
         </li>
       </ul>
 

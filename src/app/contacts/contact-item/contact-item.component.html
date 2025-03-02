@@ -1,6 +1,12 @@
-<div class="contact-item mb-3 d-flex align-items-center" (click)="onClick()">
+<!-- <div class="contact-item mb-3 d-flex align-items-center" (click)="onClick()">
     <img [src]="contact.imageUrl" alt="{{ contact.name }}" class="contact-image me-3" 
          style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover;">
     <h4 class="mb-0">{{ contact.name }}</h4>
-  </div>
+  </div> -->
 
+
+  <a [routerLink]="['/contacts', contact.id]" class="contact-item d-flex align-items-center">
+     <img [src]="contact.imageUrl" alt="{{ contact.name }}" class="contact-image me-3" 
+          style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover;">
+     <h4 class="mb-0">{{ contact.name }}</h4>
+ </a>
