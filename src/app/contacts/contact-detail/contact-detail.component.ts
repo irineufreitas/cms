@@ -3,11 +3,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ContactService } from '../contact.service';
 import { Contact } from '../contact.model';
 import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'cms-contact-detail',
   standalone: true,
-  imports: [RouterModule],
+  imports: [RouterModule, CommonModule],
   templateUrl: './contact-detail.component.html',
   styleUrls: ['./contact-detail.component.css']
 })

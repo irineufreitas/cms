@@ -5,11 +5,12 @@ import { CommonModule, NgFor } from '@angular/common';
 import { ContactService } from '../contact.service';
 import { RouterModule } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'cms-contact-list',
   standalone: true,
-  imports: [NgFor, RouterModule, CommonModule, ContactItemComponent],
+  imports: [NgFor, RouterModule, CommonModule, ContactItemComponent, DragDropModule],
   templateUrl: './contact-list.component.html',
   styleUrls: ['./contact-list.component.css']
 })
