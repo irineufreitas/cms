@@ -1,66 +1,84 @@
 import { Injectable } from '@angular/core';
-import { MOCKDOCUMENTS } from './MOCKDOCUMENTS';
-import { Document } from './document.model';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Subject } from 'rxjs';
-
+import { Document } from './document.model';
 
 @Injectable({
   providedIn: 'root'
 })
-  export class DocumentService {
-    //documentSelectedEvent = new EventEmitter<Document>();
-    private documents: Document[] = [];
-    documentListChanged = new Subject<Document[]>();
-    private maxDocumentId: number;
-  
-    constructor() {
-      this.documents = MOCKDOCUMENTS; // Assign mock data
-      this.maxDocumentId = this.getMaxId();
-    }
-  
-    getDocuments(): Document[] {
-      return this.documents.slice(); // Return a copy of documents
-    }
-  
-    getDocument(id: string): Document | null {
-      return this.documents.find(document => document.id === id) || null;
-    }
-    // Get Max ID for new documents
-    private getMaxId(): number {
-      let maxId = 0;
-      this.documents.forEach(doc => {
-        const currentId = parseInt(doc.id);
-        if (currentId > maxId) {
-          maxId = currentId;
-        }
+export class DocumentService {
+  private documents: Document[] = [];
+  documentListChanged = new Subject<Document[]>();
+
+  constructor(private http: HttpClient) {}
+
+  getDocuments() {
+    this.http
+      .get<{ message: string; documents: Document[] }>('http://localhost:3000/documents')
+      .subscribe((response) => {
+        this.documents = response.documents;
+        this.sortAndSend();
       });
-      return maxId;
-    }
+  }
 
-    // **ADD DOCUMENT**
-    addDocument(newDocument: Document) {
-      if (!newDocument) return;
-      this.maxDocumentId++;
-      newDocument.id = this.maxDocumentId.toString();
-      this.documents.push(newDocument);
-      this.documentListChanged.next(this.documents.slice()); // Emit updated list
-    }
+  getDocument(id: string): Document | null {
+    return this.documents.find(document => document.id === id) || null;
+  }
 
-    // **UPDATE DOCUMENT**
-    updateDocument(originalDocument: Document, newDocument: Document) {
-      if (!originalDocument || !newDocument) return;
-      const pos = this.documents.findIndex(d => d.id === originalDocument.id);
-      if (pos < 0) return;
-      newDocument.id = originalDocument.id;
-      this.documents[pos] = newDocument;
-      this.documentListChanged.next(this.documents.slice()); // Emit updated list
-    }
+  addDocument(document: Document) {
+    if (!document) return;
 
-    // **DELETE DOCUMENT**
-    deleteDocument(document: Document) {
-      if (!document) return;
-      const index = this.documents.indexOf(document);
-      if (index < 0) return;
-      this.documents.splice(index, 1);
-    }
+    document.id = '';
+
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+    this.http
+      .post<{ message: string; document: Document }>(
+        'http://localhost:3000/documents',
+        document,
+        { headers }
+      )
+      .subscribe((responseData) => {
+        this.documents.push(responseData.document);
+        this.sortAndSend();
+      });
+  }
+
+  updateDocument(originalDocument: Document, newDocument: Document) {
+    if (!originalDocument || !newDocument) return;
+
+    const pos = this.documents.findIndex((d) => d.id === originalDocument.id);
+    if (pos < 0) return;
+
+    newDocument.id = originalDocument.id;
+    newDocument._id = originalDocument._id;
+
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+    this.http
+      .put('http://localhost:3000/documents/' + originalDocument.id, newDocument, {
+        headers
+      })
+      .subscribe(() => {
+        this.documents[pos] = newDocument;
+        this.sortAndSend();
+      });
+  }
+
+  deleteDocument(document: Document) {
+    if (!document) return;
+
+    const pos = this.documents.findIndex((d) => d.id === document.id);
+    if (pos < 0) return;
+
+    this.http.delete('http://localhost:3000/documents/' + document.id).subscribe(() => {
+      this.documents.splice(pos, 1);
+      this.sortAndSend();
+    });
+  }
+
+  private sortAndSend() {
+    this.documents.sort((a, b) => a.name.localeCompare(b.name));
+    this.documentListChanged.next(this.documents.slice());
+  }
 }

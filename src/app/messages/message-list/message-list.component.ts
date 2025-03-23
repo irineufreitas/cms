@@ -7,6 +7,8 @@ import { MessageService } from '../message.service';
 import { ContactService } from '../../contacts/contact.service';
 import { HttpClientModule } from '@angular/common/http';
 
+type DisplayMessage = Message & { senderName: string };
+
 @Component({
   selector: 'cms-message-list',
   standalone: true,
@@ -16,31 +18,48 @@ import { HttpClientModule } from '@angular/common/http';
     MessageEditComponent,
     HttpClientModule
   ],
+  
   templateUrl: './message-list.component.html',
   styleUrl: './message-list.component.css'
 })
 export class MessageListComponent implements OnInit {
-  messages: Message[] = [];
+  messages: DisplayMessage[] = [];
 
   constructor(private messageService: MessageService, private contactService: ContactService) {}
 
   ngOnInit() {
-    // First load contacts
     this.contactService.getContacts();
-  
-    // Then subscribe to messages
+
     this.messageService.messageChangedEvent.subscribe((updatedMessages: Message[]) => {
-      const contacts = this.contactService.getAllContacts(); 
-  
+      const contacts = this.contactService.getAllContacts();
+
       this.messages = updatedMessages.map(message => {
-        const contact = contacts.find(c => c.id === message.sender);
+        let senderName = 'Unknown Sender';
+
+        if (typeof message.sender === 'object' && message.sender?.name) {
+          senderName = message.sender.name;
+        } else if (typeof message.sender === 'string') {
+          const contact = contacts.find(c => c._id === message.sender || c.id === message.sender);
+          senderName = contact ? contact.name : 'Unknown Sender';
+        }
+
         return {
           ...message,
-          sender: contact ? contact.name : 'Unknown Sender'
+          senderName // Add new string field
         };
       });
     });
-  
+
     this.messageService.getMessages();
+  }
+
+
+  getSenderName(sender: string | { name: string }): string {
+    if (typeof sender === 'object' && sender !== null && 'name' in sender) {
+      return sender.name;
+    }
+  
+    const contact = this.contactService.getContact(sender);
+    return contact ? contact.name : 'Unknown';
   }
 }

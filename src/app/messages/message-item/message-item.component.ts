@@ -35,5 +35,8 @@ import { Message } from '../message.model';
   styleUrls: ['./message-item.component.css']
 })
 export class MessageItemComponent {
-  @Input() message!: Message;
+  @Input() message!: Message & { senderName: string };
+  @Input() senderName: string = 'Unknown';
+
+  
 }

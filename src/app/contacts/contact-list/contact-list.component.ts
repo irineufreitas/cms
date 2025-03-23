@@ -7,7 +7,7 @@ import { RouterModule } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ContactsFilterPipe } from "../contacts-filter.pipe";
-import { HttpClientModule } from '@angular/common/http';
+
 
 @Component({
   selector: 'cms-contact-list',
@@ -19,7 +19,7 @@ import { HttpClientModule } from '@angular/common/http';
     ContactItemComponent,
     DragDropModule,
     ContactsFilterPipe,
-    HttpClientModule  
+      
   ],
   templateUrl: './contact-list.component.html',
   styleUrls: ['./contact-list.component.css']
@@ -38,12 +38,13 @@ export class ContactListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.contactService.getContacts();
+    
     this.subscription = this.contactService.contactListChanged.subscribe(
       (contacts: Contact[]) => {
         this.contacts = contacts;
       }
     );
+    this.contactService.getContacts();
   }
 
   ngOnDestroy() {

@@ -5,6 +5,7 @@ var http = require('http');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var mongoose = require('mongoose');
 
 // import the routing file to handle the default (index) route
 var index = require('./server/routes/app');
@@ -13,6 +14,18 @@ var index = require('./server/routes/app');
 var documentRoutes = require('./server/routes/documents');
 var messageRoutes = require('./server/routes/messages');
 var contactRoutes = require('./server/routes/contacts');
+
+// establish a connection to the mongo database
+mongoose.connect('mongodb://localhost:27017/cms', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+.then(() => {
+  console.log('✅ Connected to MongoDB database!');
+})
+.catch(err => {
+  console.error('❌ Connection failed:', err);
+});
 
 var app = express(); // create an instance of express
 
@@ -50,6 +63,7 @@ app.use('/contacts', contactRoutes);
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist/cms/browser/index.html'));
 });
+
 
 // Set the port and create HTTP server
 const port = process.env.PORT || '3000';
