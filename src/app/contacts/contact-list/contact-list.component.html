@@ -4,11 +4,31 @@
     <a [routerLink]="['/contacts', 'new']" class="btn btn-primary">+ New Contact</a>
   </div>
 
+
+   <!-- 🔍 Add Search Input -->
+   <div class="row mb-3">
+    <div class="col-md-6">
+      <div class="input-group">
+        <span class="input-group-text">
+          <i class="glyphicon glyphicon-search"></i>
+        </span>
+        <input
+          #searchBox
+          type="text"
+          class="form-control"
+          placeholder="Enter a search value"
+          (keyup)="search(searchBox.value)"
+        />
+      </div>
+    </div>
+  </div>
+
+
   <div class="row">
     <div class="col-md-12">
       <div cdkDropList [cdkDropListData]="contacts" [cdkDropListConnectedTo]="['groupList']"
       class="contact-list">
-   <cms-contact-item *ngFor="let contact of contacts" [contact]="contact" cdkDrag>
+      <cms-contact-item *ngFor="let contact of contacts | contactsFilter:term" [contact]="contact" cdkDrag>
    </cms-contact-item>
  </div>
     </div>

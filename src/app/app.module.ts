@@ -4,15 +4,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { DragDropModule } from '@angular/cdk/drag-drop'; // ✅ Import Angular CDK Drag & Drop
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 
 // Import Components
 import { AppComponent } from './app.component';
 import { ContactEditComponent } from './contacts/contact-edit/contact-edit.component';
 import { ContactListComponent } from './contacts/contact-list/contact-list.component';
 import { ContactDetailComponent } from './contacts/contact-detail/contact-detail.component';
-
+import { ContactsFilterPipe } from './contacts/contacts-filter.pipe';
 @NgModule({
   declarations: [
+    
+    
 
   ],
   imports: [
@@ -20,7 +23,10 @@ import { ContactDetailComponent } from './contacts/contact-detail/contact-detail
     AppRoutingModule,
     DragDropModule, 
     FormsModule,
-    CommonModule
+    CommonModule,
+    HttpClientModule,
+    ContactsFilterPipe,
+    
   ],
   providers: [],
    

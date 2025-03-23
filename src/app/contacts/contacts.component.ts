@@ -11,4 +11,10 @@ import { ContactDetailComponent } from './contact-detail/contact-detail.componen
   templateUrl: './contacts.component.html',
   styleUrl: './contacts.component.css'
 })
-export class ContactsComponent { }
+
+export class ContactsComponent {
+
+  constructor() {
+    
+  }
+ }

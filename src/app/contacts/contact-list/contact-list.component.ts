@@ -6,23 +6,39 @@ import { ContactService } from '../contact.service';
 import { RouterModule } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { ContactsFilterPipe } from "../contacts-filter.pipe";
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'cms-contact-list',
   standalone: true,
-  imports: [NgFor, RouterModule, CommonModule, ContactItemComponent, DragDropModule],
+  imports: [
+    NgFor,
+    RouterModule,
+    CommonModule,
+    ContactItemComponent,
+    DragDropModule,
+    ContactsFilterPipe,
+    HttpClientModule  
+  ],
   templateUrl: './contact-list.component.html',
   styleUrls: ['./contact-list.component.css']
 })
 export class ContactListComponent implements OnInit, OnDestroy {
-  
   contacts: Contact[] = [];
   private subscription!: Subscription;
+  term: string = '';
 
-  constructor(private contactService: ContactService) {} // Inject ContactService
+  constructor(private contactService: ContactService) {
+    
+  }
+
+  search(value: string) {
+    this.term = value;
+  }
 
   ngOnInit() {
-    this.contacts = this.contactService.getContacts(); // Fetch contacts from service
+    this.contactService.getContacts();
     this.subscription = this.contactService.contactListChanged.subscribe(
       (contacts: Contact[]) => {
         this.contacts = contacts;
@@ -31,11 +47,6 @@ export class ContactListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe(); // Prevent memory leaks
+    this.subscription.unsubscribe();
   }
-
-
-  // onSelected(contact: Contact) {
-  //   this.contactService.contactSelectedEvent.emit(contact);
-  // }
 }
